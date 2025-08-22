@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { FiMenu, FiX, FiArrowRight } from 'react-icons/fi'
+import { FiMenu, FiX, FiArrowRight, FiChevronDown } from 'react-icons/fi'
 
 export default function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -17,18 +17,34 @@ export default function SiteHeader() {
     <Bar data-scrolled={isScrolled}>
       <Inner>
         <Brand href="/">
-          <img src="/REstyle.svg" alt="Re:Style" />
+          <img src="/Logo.svg" alt="Re:Style" />
         </Brand>
 
         <Nav>
           <a href="#features">Features</a>
           <a href="#solutions">Solutions</a>
-          <a href="#cta" className="btn primary">Get started <FiArrowRight /></a>
+          <div className="menu">
+            <a href="#resource">Resource hub <FiChevronDown /></a>
+            <div className="dropdown">
+              <a href="#docs">Docs</a>
+              <a href="#tutorials">Tutorials</a>
+              <a href="#blog">Blog</a>
+            </div>
+          </div>
+          <div className="menu">
+            <a href="#about">About us <FiChevronDown /></a>
+            <div className="dropdown">
+              <a href="#company">Company</a>
+              <a href="#careers">Careers</a>
+              <a href="#contact">Contact</a>
+            </div>
+          </div>
+          <a href="http://localhost:5176/dashboard" className="btn primary">Get started <FiArrowRight /></a>
         </Nav>
 
         <Actions>
           <a className="btn ghost" href="#demo">Book a demo</a>
-          <a className="btn primary" href="#cta">Get started</a>
+          <a className="btn primary" href="http://localhost:5176/dashboard">Get started</a>
           <Burger aria-label="Open menu" onClick={() => setIsMenuOpen(true)}>
             <FiMenu />
           </Burger>
@@ -39,7 +55,7 @@ export default function SiteHeader() {
         <MobileSheet onClick={(e) => e.stopPropagation()}>
           <SheetHeader>
             <Brand href="/">
-              <img src="/REstyle.svg" alt="Re:Style" />
+              <img src="/Logo.svg" alt="Re:Style" />
             </Brand>
             <IconBtn aria-label="Close menu" onClick={() => setIsMenuOpen(false)}>
               <FiX />
@@ -48,8 +64,16 @@ export default function SiteHeader() {
           <MobileLinks>
             <a href="#features" onClick={() => setIsMenuOpen(false)}>Features</a>
             <a href="#solutions" onClick={() => setIsMenuOpen(false)}>Solutions</a>
+            <a href="#resource" onClick={() => setIsMenuOpen(false)}>Resource hub</a>
+            <a href="#docs" onClick={() => setIsMenuOpen(false)}>Docs</a>
+            <a href="#tutorials" onClick={() => setIsMenuOpen(false)}>Tutorials</a>
+            <a href="#blog" onClick={() => setIsMenuOpen(false)}>Blog</a>
+            <a href="#about" onClick={() => setIsMenuOpen(false)}>About us</a>
+            <a href="#company" onClick={() => setIsMenuOpen(false)}>Company</a>
+            <a href="#careers" onClick={() => setIsMenuOpen(false)}>Careers</a>
+            <a href="#contact" onClick={() => setIsMenuOpen(false)}>Contact</a>
             <a className="btn ghost" href="#demo" onClick={() => setIsMenuOpen(false)}>Book a demo</a>
-            <a className="btn primary" href="#cta" onClick={() => setIsMenuOpen(false)}>Get started</a>
+            <a className="btn primary" href="http://localhost:5176/dashboard" onClick={() => setIsMenuOpen(false)}>Get started</a>
           </MobileLinks>
         </MobileSheet>
       </MobileOverlay>
@@ -84,6 +108,11 @@ const Nav = styled.nav`
   a{ color: ${({theme}) => theme.color.subtext}; }
   .btn.primary{ color: #0b1220; }
   @media (max-width: 900px){ display: none; }
+  .menu{ position: relative; }
+  .menu > a{ display: inline-flex; align-items: center; gap: 6px; }
+  .menu .dropdown{ position: absolute; top: 120%; left: 0; display: none; min-width: 180px;
+    background: ${({theme}) => theme.color.surface}; border: 1px solid ${({theme}) => theme.color.border}; border-radius: 10px; padding: 8px; }
+  .menu:hover .dropdown{ display: grid; gap: 6px; }
 `
 
 const Actions = styled.div`
