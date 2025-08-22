@@ -15,11 +15,7 @@ export default function LogoMotion({ className, strokeWidth = 32, endColor = '#6
         pathLength: 1,
         pathOffset: 0,
         opacity: 1,
-        transition: {
-          pathLength: { delay, type: 'spring', duration: 1.3, bounce: 0 },
-          pathOffset: { delay, duration: 1.3, ease: 'linear' },
-          opacity: { delay, duration: 0.01 },
-        },
+        transition: { delay, duration: 1.3, ease: 'linear' },
       }
     },
   }
