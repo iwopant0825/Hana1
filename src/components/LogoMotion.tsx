@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import type { Variants } from 'framer-motion'
 
 type LogoMotionProps = {
   className?: string
@@ -7,7 +8,7 @@ type LogoMotionProps = {
 }
 
 export default function LogoMotion({ className, strokeWidth = 32, endColor = '#60a5fa' }: LogoMotionProps) {
-  const draw = {
+  const draw: Variants = {
     hidden: { pathLength: 0, pathOffset: 1, opacity: 0 },
     visible: (i: number) => {
       const delay = 1 + i * 0.3
@@ -15,7 +16,7 @@ export default function LogoMotion({ className, strokeWidth = 32, endColor = '#6
         pathLength: 1,
         pathOffset: 0,
         opacity: 1,
-        transition: { delay, duration: 1.3, ease: 'linear' },
+        transition: { delay, duration: 1.3 },
       }
     },
   }
